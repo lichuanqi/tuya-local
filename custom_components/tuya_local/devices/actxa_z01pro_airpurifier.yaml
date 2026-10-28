@@ -1,0 +1,162 @@
+name: Air purifier
+products:
+  - id: bh0zczf7eeqds85x
+    manufacturer: ACTXA
+    model: AKJ1000F-Z01 Pro
+
+entities:
+  # DP1 开关 / DP3 模式 / DP4 风速
+  - entity: fan
+    translation_key: air_purifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: auto
+            value: auto
+          - dps_val: sleep
+            value: sleep
+          - dps_val: displayoff
+            value: displayoff
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 20
+          - dps_val: "2"
+            value: 40
+          - dps_val: "3"
+            value: 60
+          - dps_val: "4"
+            value: 80
+          - dps_val: "5"
+            value: 100
+
+  # DP2 PM2.5
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: ugm3
+
+  # DP5 滤芯寿命
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+
+  # DP27 甲醛
+  - entity: sensor
+    name: 甲醛
+    dps:
+      - id: 27
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "mg/m³"
+        mapping:
+          - scale: 100
+
+  # DP101 VOC（只读枚举）
+  - entity: sensor
+    name: VOC
+    class: enum
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: excellent
+            value: 优秀
+          - dps_val: good
+            value: 良好
+          - dps_val: average
+            value: 一般
+          - dps_val: poor
+            value: 差
+
+  # DP6 +/-离子
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+
+  # DP7 童锁
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+
+  # DP9 UV杀菌
+  - entity: switch
+    name: UV杀菌
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+
+  # DP11 滤芯复位
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+
+  # DP18 倒计时
+  - entity: select
+    name: 倒计时
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"
